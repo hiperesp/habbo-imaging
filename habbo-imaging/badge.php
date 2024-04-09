@@ -34,15 +34,20 @@ function CheckStr($str) {
 }
 
 function Colorize($img, $rgb) {
-  	imagetruecolortopalette($img, true, 256);
-  	$numColors = imagecolorstotal($img);
+    imagetruecolortopalette($img, true, 256);
+    $numColors = imagecolorstotal($img);
 
- 	for ($x = 0; $x < $numColors; $x++) {
-		list($r, $g, $b) = array_values(imagecolorsforindex($img, $x));
-		$grayscale = ($r + $g + $b) / 3 / 0xff;
-
-		imagecolorset($img, $x, $grayscale * $rgb[0], $grayscale * $rgb[1], $grayscale * $rgb[2]);
-	}
+    for ($x = 0; $x < $numColors; $x++) {
+        list($r, $g, $b) = array_values(imagecolorsforindex($img, $x));
+        $grayscale = ($r + $g + $b) / 3 / 0xff;
+        
+        // Multiplica pelo valor RGB e converte para inteiro
+        $newRed = intval($grayscale * $rgb[0]);
+        $newGreen = intval($grayscale * $rgb[1]);
+        $newBlue = intval($grayscale * $rgb[2]);
+        
+        imagecolorset($img, $x, $newRed, $newGreen, $newBlue);
+    }
 }
 
 // Security
