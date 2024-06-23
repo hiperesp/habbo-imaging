@@ -12,4 +12,6 @@ RUN docker-php-ext-install gd
 WORKDIR /var/www/html/
 COPY . .
 
+RUN chmod 777 -R /var/www/html
+
 EXPOSE 80
