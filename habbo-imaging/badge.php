@@ -9,7 +9,7 @@
 |+=========================================================+
 */
 
-$Dir = 'BN';
+$Dir = 'BO';
 const COLORSRGB = [1 => [255, 214, 1], 2 => [238, 118, 0], 3 => [132, 222, 0], 4 => [88, 154, 0], 5 => [80, 193, 251], 6 => [0, 111, 207], 7 => [255, 152, 227], 8 => [243, 52, 191], 9 => [255, 45, 45], 10 => [175, 10, 10], 11 => [255, 255, 255], 12 => [192, 192, 192], 13 => [55, 55, 55], 14 => [251, 231, 172], 15 => [151, 118, 65], 16 => [194, 234, 255], 17 => [255, 241, 101], 18 => [170, 255, 125], 19 => [135, 230, 200], 20 => [152, 68, 231], 21 => [222, 169, 255], 22 => [255, 181, 121], 23 => [195, 170, 110], 24 => [122, 122, 122]];
 const UNPAINTABLE = [209, 210, 211, 212];
 
@@ -59,7 +59,7 @@ $BadgeCode = str_replace(['.gif', 'X'], '', $_GET['badge']);
 if (file_exists($Dir . '/cache/' . $BadgeCode . '.gif'))
 {
 	header('Content-type: image/gif');
-	imagegif (imagecreatefromgif($Dir . '/cache/' . $BadgeCode . '.gif'));
+	readfile($Dir . '/cache/' . $BadgeCode . '.gif');
 	exit;
 }
 
@@ -187,7 +187,7 @@ if ($Symbols)
 	}
 }
 
+imagegif ($GIF, $Dir . '/cache/' . $BadgeCode . '.gif');
+
 header('Content-type: image/gif');
-//imagegif ($GIF, $Dir . '/cache/' . $BadgeCode . '.gif');
-imagegif ($GIF);
-?>
+readfile($Dir . '/cache/' . $BadgeCode . '.gif');

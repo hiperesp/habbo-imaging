@@ -1,0 +1,12 @@
+services:
+  habbo-imaging-badges:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: habbo-imaging-badges
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - ENV=local-docker

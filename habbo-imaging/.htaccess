@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Check if the requested resource does not exist as a file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect requests from /badge/ to badge.php
+RewriteRule ^badge/(.*)$ badge.php?badge=$1 [L]
