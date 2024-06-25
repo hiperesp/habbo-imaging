@@ -4,11 +4,13 @@ foreach($_GET as $key => $value) {
     if(!\is_string($value)) {
         continue;
     }
-    $query[] = $value;
+    $query[$key] = $value;
 }
 
+$queryStr = \http_build_query($query);
+
 $ch = \curl_init();
-\curl_setopt($ch, CURLOPT_URL, "https://habbo.co.uk/habbo-imaging/avatarimage?".\http_build_query($query));
+\curl_setopt($ch, CURLOPT_URL, "https://habbo.co.uk/habbo-imaging/avatarimage?{$queryStr}");
 \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 \curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 \curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
