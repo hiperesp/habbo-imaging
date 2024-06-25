@@ -1,9 +1,14 @@
 <?php
-if(!isset($_GET['avatarimage']) || !\is_string($_GET['avatarimage']))
-    exit;
+$query = [];
+foreach($_GET as $key => $value) {
+    if(!\is_string($value)) {
+        continue;
+    }
+    $query[] = $value;
+}
 
 $ch = \curl_init();
-\curl_setopt($ch, CURLOPT_URL, "https://habbo.co.uk/habbo-imaging/avatarimage/{$_GET['avatarimage']}");
+\curl_setopt($ch, CURLOPT_URL, "https://habbo.co.uk/habbo-imaging/avatarimage?".\http_build_query($query));
 \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 \curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 \curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);

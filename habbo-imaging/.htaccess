@@ -6,4 +6,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # Redirect requests from /badge/ to badge.php
 RewriteRule ^badge/(.*)$ badge.php?badge=$1 [L]
-RewriteRule ^avatarimage/(.*)$ avatarimage.php?avatarimage=$1
+RewriteRule ^avatarimage$ avatarimage.php [L]
